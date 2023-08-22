@@ -66,6 +66,9 @@ func main() {
 // ExpectedOutput: Markdown documentation for the Go file.
 // Example: processFile("example.go", &mdBuilder)
 func processFile(filename string, mdBuilder *strings.Builder) {
+    // Output the Go source file name before the top-of-file documentation
+    mdBuilder.WriteString(fmt.Sprintf("# File: %s\n\n", filepath.Base(filename)))
+
     fileSet := token.NewFileSet()
     content, err := os.ReadFile(filename)
     if err != nil {
